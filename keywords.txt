@@ -1,0 +1,38 @@
+#######################################
+# Syntax Coloring Map
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+WIFIconnectionManager		KEYWORD1
+WiFiconnectionStatus		KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+save				KEYWORD2
+restore				KEYWORD2	
+restoreDefaults		KEYWORD2	
+erase				KEYWORD2
+setSTAcredentials	KEYWORD2
+beginAP				KEYWORD2
+endAP				KEYWORD2
+
+#######################################
+# Structures (KEYWORD3)
+#######################################
+
+STAcredentials				KEYWORD3
+
+######################################
+# Constants (LITERAL1)
+######################################
+
+WIFI_INIT				LITERAL1
+WIFI_RECONNECT			LITERAL1
+WIFI_CONNECTING			LITERAL1
+WIFI_CONNECTED			LITERAL1
+WIFI_CONNECT_FAILED		LITERAL1
