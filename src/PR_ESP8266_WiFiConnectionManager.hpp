@@ -15,7 +15,7 @@ extern "C" {
 
 #include "PR_GetTau.hpp"                         
 
-#define		WIFI_TIME_TO_CONNECT_FAILED		20	//[s]
+#define		WIFI_TIME_TO_CONNECT_FAILED		10	//[s]
 
 	#define	STA_SSID_PWD_MAX_LEN				31
 	#define	EEPROM_STA_CREDITALS_ADDR			0
@@ -48,12 +48,12 @@ class PR_ESP8266_WiFiConnectionManagerClass {
 		PR_ESP8266_WiFiConnectionManagerClass ();
 
 		void	loop();	
-		bool	setSTAcredentials(const String sta_ssid, const String sta_password);	
+		bool	setSTAcredentials(const String sta_ssid, const String sta_password = "");	
 		
 		WiFiconnectionStatus	getStaus();
 		
 		bool	beginAP();
-		bool	beginAP(String& apName);
+		bool	beginAP(const String& apName, const String& apPassword );
 		
 		bool	endAP();
 		
@@ -73,7 +73,7 @@ class PR_ESP8266_WiFiConnectionManagerClass {
 		
 	
 		String			_apName			= "";    		//for access point
-		String			_apPassword;
+		String			_apPassword		= "";
 				
 		//String        _sta_ssid       = "";			//WiFi credentials
 		//String        _sta_password	= "";
@@ -141,7 +141,6 @@ void	PR_ESP8266_WiFiConnectionManagerClass::loop() {
 			break;
 		case  WIFI_RECONNECT: {
 			//
-				//WiFi.begin();
 				lastConnTime = millis()/1000;
 			}		
 			{	// change state conditions
@@ -190,17 +189,18 @@ void	PR_ESP8266_WiFiConnectionManagerClass::loop() {
 	
 } //loop
 
+
 bool	PR_ESP8266_WiFiConnectionManagerClass::beginAP() {
-	//return beginAP( String( ESP.getChipId() ) );
+	return beginAP( "ESP_" + String(ESP.getChipId()),  String(ESP.getChipId()) );
 }
 
 
-bool	PR_ESP8266_WiFiConnectionManagerClass::beginAP(String& apName) {
+bool	PR_ESP8266_WiFiConnectionManagerClass::beginAP(const String& apName, const String& apPassword ) {
 	
 	WiFi.mode(WIFI_AP_STA);
 	DEBUG_WM(F("SET WIFI mode AP+STA"));
 
-	WiFi.softAP(apName.c_str(), _apPassword.c_str());
+	WiFi.softAP(apName.c_str(), apPassword.c_str());
 	
 	DEBUG_WM(F("start Acess Point:"));
 	DEBUG_WM(apName);
