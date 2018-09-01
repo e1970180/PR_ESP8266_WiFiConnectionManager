@@ -48,12 +48,12 @@ class PR_ESP8266_WiFiConnectionManagerClass {
 		PR_ESP8266_WiFiConnectionManagerClass ();
 
 		void	loop();	
-		bool	setSTAcredentials(const String sta_ssid, const String sta_password = "");	
+		bool	setSTAcredentials(const String sta_ssid, const String sta_password );	
 		
 		WiFiconnectionStatus	getStaus();
 		
 		bool	beginAP();
-		bool	beginAP(const String& apName, const String& apPassword );
+		bool	beginAP(const String& apName, const String& apPassword = "" );
 		
 		bool	endAP();
 		
