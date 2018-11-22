@@ -35,7 +35,7 @@ class STAcredentials {
 		bool		save();
 		bool		restore();
 		void		restoreDefaults();
-		void		erase();				//for debuging
+		void		erase();				//for debugging
 		
 		char		ssid[STA_SSID_PWD_MAX_LEN];
 		char		password[STA_SSID_PWD_MAX_LEN];
@@ -45,7 +45,7 @@ class STAcredentials {
 
 class PR_ESP8266_WiFiConnectionManagerClass {
 	public:
-		PR_ESP8266_WiFiConnectionManagerClass ();
+		PR_ESP8266_WiFiConnectionManagerClass();
 
 		void	loop();	
 		bool	setSTAcredentials(const String sta_ssid, const String sta_password );	
@@ -58,7 +58,7 @@ class PR_ESP8266_WiFiConnectionManagerClass {
 		bool	endAP();
 		
 		bool	setOnConnectedCallback( void (*func)(void) );
-		bool	setOnConnectFailledCallback( void (*func)(void) );
+		bool	setOnConnectFailedCallback( void (*func)(void) );
 		
 	
 	protected:
@@ -127,7 +127,7 @@ WiFiconnectionStatus	PR_ESP8266_WiFiConnectionManagerClass::getStaus() {
 
 void	PR_ESP8266_WiFiConnectionManagerClass::loop() {
 	
-	static uint32_t	lastConnTime = 0;
+	static uint32_t	lastConnTime = 0;	//[sek]
 //Serial.print(smWIFIstatus);
     	
 	switch (smWIFIstatus) {
@@ -228,7 +228,7 @@ bool	PR_ESP8266_WiFiConnectionManagerClass::setOnConnectedCallback( void (*func)
 	return true;
 }
 
-bool	PR_ESP8266_WiFiConnectionManagerClass::setOnConnectFailledCallback( void (*func)(void) ) {
+bool	PR_ESP8266_WiFiConnectionManagerClass::setOnConnectFailedCallback( void (*func)(void) ) {
 	_onConnectFailledCallback = func;
 	return true;
 }
@@ -312,6 +312,7 @@ void PR_ESP8266_WiFiConnectionManagerClass::DEBUG_WM(Generic text) {
 
 
 
+/// from documentation
 
 /*
 typedef enum {
